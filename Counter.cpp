@@ -55,7 +55,7 @@ Counter::Counter(int _posx, int _posy, int _sizex, int _sizey, string _textmess,
         }
     }
 
-    void Counter::draw() const
+    void Counter::draw()
     {
         gout<<color(r,g,b)<<move_to(posx,posy)<<box(sizex,sizey)<<move_to(posx+5,posy+sizey-sizey/3)<<color(255-r,255-g,255-b) << text(textmess);
         gout << color(255-r,255-g,255-b)<<move_to(posx+sizex-(sizey-sizey/3),posy)<<box(sizey-sizey/3,sizey);

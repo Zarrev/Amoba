@@ -7,16 +7,17 @@ Originalwidget::Originalwidget (int _posx, int _posy, int _sizex, int _sizey) : 
 
 void Originalwidget::focus(event ev, int a)
 {
-
-    if (posx <= ev.pos_x && posx+sizex >= ev.pos_x && posy <= ev.pos_y && posy+sizey >= ev.pos_y && ev.button == btn_left && ev.keycode != key_tab)
+    if (!statictextbox)
     {
-        gout << color(0,255,0) << move_to(posx-1,posy-1) << line(sizex+2,0) << line(0,sizey+2) << line(-(sizex+2),0) << line(0,-(sizey+2));
-        focusban = true;
+        if (posx <= ev.pos_x && posx+sizex >= ev.pos_x && posy <= ev.pos_y && posy+sizey >= ev.pos_y && ev.button == btn_left && ev.keycode != key_tab)
+        {
+            gout << color(0,255,0) << move_to(posx-1,posy-1) << line(sizex+2,0) << line(0,sizey+2) << line(-(sizex+2),0) << line(0,-(sizey+2));
+            focusban = true;
+        }
+        else if (focusban  && ev.button == btn_left)
+        {
+            gout << color(0,0,0) << move_to(posx-1,posy-1) << line(sizex+2,0) << line(0,sizey+2) << line(-(sizex+2),0) << line(0,-(sizey+2));
+            focusban = false;
+        }
     }
-    else if (focusban  && ev.button == btn_left)
-    {
-        gout << color(0,0,0) << move_to(posx-1,posy-1) << line(sizex+2,0) << line(0,sizey+2) << line(-(sizex+2),0) << line(0,-(sizey+2));
-        focusban = false;
-    }
-
 }

@@ -14,7 +14,9 @@ protected:
     int posx, posy, sizex, sizey, row, r, g, b;
     int counter = 0;
     int number = 0;
+    int reckon = 0;
     int upbar, downbar;
+    bool statictextbox = false;
     bool logical = false;
     bool unlogical = false;
     bool focusban = false;
@@ -23,10 +25,10 @@ protected:
     vector<int> intnumber;
 
 public:
-
+    string result = "Nem lett kivalasztott elem.";
     Originalwidget (int _posx, int _posy, int _sizex, int _sizey);
     Originalwidget(int _posx, int _posy, int _sizex, int _sizey, string _textmess, int _row, int _r, int _g, int _b);
-    virtual void draw() const = 0;
+    virtual void draw()  = 0;
     virtual void functionmake(event ev) = 0;
     virtual int igetter(int a) {};
     virtual int isetter() {};
