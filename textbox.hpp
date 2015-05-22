@@ -9,7 +9,7 @@ public:
      virtual void draw() ;
      virtual void functionmake(event ev);
      virtual string sgetter(string a);
-     virtual string ssetter();
+     virtual void ssetter();
 };
 
 #endif // TEXTBOX_HPP_INCLUDED

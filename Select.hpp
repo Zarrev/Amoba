@@ -25,7 +25,7 @@ public:
     virtual void draw() ;
     virtual void functionmake(event ev);
     virtual string sgetter(string a) {};
-    virtual string ssetter() {};
+    virtual void ssetter() {};
 
 };
 

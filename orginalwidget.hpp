@@ -21,6 +21,7 @@ protected:
     bool unlogical = false;
     bool focusban = false;
     string textmess;
+    string textmass;
     vector<string> stringtext;
     vector<int> intnumber;
 
@@ -31,9 +32,9 @@ public:
     virtual void draw()  = 0;
     virtual void functionmake(event ev) = 0;
     virtual int igetter(int a) {};
-    virtual int isetter() {};
+    virtual void isetter() {};
     virtual string sgetter(string a) {};
-    virtual string ssetter() {};
+    virtual void ssetter() {};
     virtual void focus(event ev, int a);
 
 };

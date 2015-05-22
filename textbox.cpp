@@ -60,8 +60,7 @@
     {
 
     }
-
-    string Textbox::ssetter()
+    void Textbox::ssetter()
     {
 
     }

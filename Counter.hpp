@@ -16,7 +16,7 @@ public:
      virtual void draw() ;
      virtual void functionmake(event ev);
      virtual int igetter(int a);
-     virtual int isetter();
+     virtual void isetter();
 
 };
 
