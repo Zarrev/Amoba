@@ -10,17 +10,20 @@ Button::Button(int _posx, int _posy, int _sizex, int _sizey, string _textmess, i
 
 void Button::draw()
 {
-    gout << move_to(posx,posy) << color(r,g,b) << box(sizex,sizey) << move_to(posx+sizex/2-gout.twidth(a)/2,posy+sizey/2+(gout.cascent()+gout.cdescent())/2-2) << color(255-r,255-g,255-b) << text(a);
+    gout << move_to(posx,posy) << color(r,g,b) << box(sizex,sizey) << move_to(posx+sizex/2-gout.twidth(a)/2,posy+sizey/2+gout.cdescent())
+         << color(255-r,255-g,255-b) << text(a);
 
 
     if (focusban && logical)
     {
-        gout << move_to(posx,posy) << color(255-r,255-g,255-b) << box(sizex,sizey) << move_to(posx+sizex/2-gout.twidth(a)/2,posy+sizey/2+(gout.cascent()+gout.cdescent())/2-2) << color(r,g,b) << text(a);
+        gout << move_to(posx,posy) << color(255-r,255-g,255-b) << box(sizex,sizey) << move_to(posx+sizex/2-gout.twidth(a)/2,posy+sizey/2+gout.cdescent())
+             << color(r,g,b) << text(a);
     }
     else if (!logical)
     {
         ssetter();
-        gout << move_to(posx,posy) << color(r,g,b) << box(sizex,sizey) << move_to(posx+sizex/2-gout.twidth(a)/2,posy+sizey/2+(gout.cascent()+gout.cdescent())/2-2) << color(255-r,255-g,255-b) << text(a);
+        gout << move_to(posx,posy) << color(r,g,b) << box(sizex,sizey) << move_to(posx+sizex/2-gout.twidth(a)/2,posy+sizey/2+gout.cdescent())
+             << color(255-r,255-g,255-b) << text(a);
     }
 }
 

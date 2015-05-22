@@ -22,6 +22,7 @@ protected:
     bool focusban = false;
     string textmess;
     string textmass;
+    string a;
     vector<string> stringtext;
     vector<int> intnumber;
 
