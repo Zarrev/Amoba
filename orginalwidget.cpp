@@ -3,7 +3,7 @@
 Originalwidget::Originalwidget(int _posx, int _posy, int _sizex, int _sizey, string _textmess, int _row, int _r, int _g, int _b)
  : posx(_posx), posy(_posy), sizex(_sizex), sizey(_sizey), textmess(_textmess), row(_row), r(_r), g(_g), b(_b) {}
 
-Originalwidget::Originalwidget (int _posx, int _posy, int _sizex, int _sizey) : posx(_posx), posy(_posy), sizex(_sizex), sizey(_sizey) {}
+Originalwidget::Originalwidget (int _posx, int _posy, int _sizex, int _sizey, int _row, int _r, int _g, int _b) : posx(_posx), posy(_posy), sizex(_sizex), sizey(_sizey), row(_row), r(_r), g(_g), b(_b) {}
 
 void Originalwidget::focus(event ev, int a)
 {

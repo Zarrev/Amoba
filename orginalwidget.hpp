@@ -28,7 +28,7 @@ protected:
 
 public:
     string result = "Nem lett kivalasztott elem.";
-    Originalwidget (int _posx, int _posy, int _sizex, int _sizey);
+    Originalwidget (int _posx, int _posy, int _sizex, int _sizey, int _row, int _r, int _g, int _b);
     Originalwidget(int _posx, int _posy, int _sizex, int _sizey, string _textmess, int _row, int _r, int _g, int _b);
     virtual void draw()  = 0;
     virtual void functionmake(event ev) = 0;

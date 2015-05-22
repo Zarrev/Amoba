@@ -34,12 +34,14 @@ void Application::run()
     {
         for (unsigned int j = 0; j < Widget.size(); j++)
         {
-            szamlalo++;
-            Widget[i][j] = new Button(14*(x),14*(y),12,12,"x",5,600,600,1000,"O",[&](){});
+            /// Valszeg mutato fv kell lambda fv helyett, de majd csak hnap...
+            Widget[i][j] = new Button(14*(x),14*(y),12,12,5,600,600,1000,[&]()
+            {
+                Widget[i][j] -> ssetter();
+            });
             if (j == Widget.size()-1)
             {
                 x++;
-                cout << "belep ";
             }
             y++;
         }
