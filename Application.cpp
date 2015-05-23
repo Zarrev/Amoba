@@ -18,6 +18,7 @@ Application::Application(int _SX, int _SY) : SX(_SX), SY(_SY) {}
 
 void Application::run()
 {
+    int meret = 20;
     gout.open(SX,SY);
     event ev;
     gin.timer(50);
@@ -33,16 +34,16 @@ void Application::run()
     }));
     */
     bool player = true;
-    MyApplication Engine(40,40);
+    MyApplication* Engine = new MyApplication(meret,meret);
     Textbox Textb(SX*3/4,SY*3/4,80,50,"ok",1,0,100,255, true);
-    vector<vector<Originalwidget*>> Widget = vector<vector<Originalwidget *> >(10, vector<Originalwidget*>(10,0));
+    vector<vector<Originalwidget*>> Widget = vector<vector<Originalwidget *> >(meret, vector<Originalwidget*>(meret,0));
     int x = 1, y = 1, szamlalo = 1;
     for (unsigned int i = 0; i < Widget.size(); i++)
     {
         for (unsigned int j = 0; j < Widget.size(); j++)
         {
             /// Valszeg mutato fv kell lambda fv helyett, de majd csak hnap...
-            Widget[i][j] = new Button(30*(x),30*(y),28,28,i,0,50,200,[&]()
+            Widget[i][j] = new Button(12*(x),12*(y),10,10,i,0,50,200,[&]()
             {
                 return ' ';
             });
@@ -66,6 +67,23 @@ void Application::run()
         Widget[i] -> draw();
         }
         */
+        if(ev.keycode == key_f5)
+        {
+            delete Engine;
+            Engine = new MyApplication(meret,meret);
+
+            for (unsigned int i = 0; i < Widget.size(); i++)
+            {
+                for (unsigned int j = 0; j < Widget.size(); j++)
+                {
+
+                        Widget[i][j] -> setText(" ");
+                }
+            }
+
+            cout << "#yolo";
+        }
+
         if (1 == 1){
         for (unsigned int i = 0; i < Widget.size(); i++)
         {
@@ -75,9 +93,9 @@ void Application::run()
                 //Widget[i][j] -> functionmake(ev);
                 Widget[i][j] -> draw();
                 if(Widget[i][j] -> isClicked(ev)) {
-                    Engine.step(i,j);
+                    Engine->step(i,j);
                     stringstream ss;
-                    ss << Engine.cell(i,j);
+                    ss << Engine->cell(i,j);
                     string tmp;
                     ss >> tmp;
                     Widget[i][j] -> setText(tmp);
@@ -87,7 +105,7 @@ void Application::run()
         }
         }
 
-        switch ( Engine.status() ) {
+        switch ( Engine->status() ) {
 
           case 0 :
             Textb.setText("Dontetlen");
