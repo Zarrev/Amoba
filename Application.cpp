@@ -28,6 +28,7 @@ void Application::run()
 
     }));
     */
+    bool player = true;
     vector<vector<Originalwidget*>> Widget = vector<vector<Originalwidget *> >(40, vector<Originalwidget*>(40,0));
     int x = 1, y = 1, szamlalo = 1;
     for (unsigned int i = 0; i < Widget.size(); i++)
@@ -37,7 +38,13 @@ void Application::run()
             /// Valszeg mutato fv kell lambda fv helyett, de majd csak hnap...
             Widget[i][j] = new Button(14*(x),14*(y),12,12,5,600,600,1000,[&]()
             {
-                Widget[i][j] -> ssetter();
+                player = !player;
+                if(player)
+                    return 'X';
+                else
+                    return 'O';
+
+                //ssetter();
             });
             if (j == Widget.size()-1)
             {
@@ -62,8 +69,8 @@ void Application::run()
         {
             for (unsigned int j = 0; j < Widget.size(); j++)
             {
-                Widget[i][j] -> functionmake(ev);
                 Widget[i][j] -> focus(ev,i);
+                Widget[i][j] -> functionmake(ev);
                 Widget[i][j] -> draw();
             }
         }

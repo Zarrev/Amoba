@@ -1,7 +1,7 @@
 #include "Button.hpp"
 #include <iostream>
 
-Button::Button(int _posx, int _posy, int _sizex, int _sizey, int _row, int _r, int _g, int _b, function<void()> _f)
+Button::Button(int _posx, int _posy, int _sizex, int _sizey, int _row, int _r, int _g, int _b, function<char()> _f)
     : Originalwidget( _posx, _posy, _sizex, _sizey, _row, _r, _g, _b)
     {
         a = "";
@@ -36,7 +36,7 @@ void Button::functionmake(event ev)
             if (posx+sizex >= ev.pos_x && posx <= ev.pos_x && posy <= ev.pos_y && posy+sizey >= ev.pos_y )
             {
                 logical = true;
-                f();
+                ssetter();
             }
         }
         if (ev.button == -btn_left)
@@ -49,7 +49,7 @@ void Button::functionmake(event ev)
         if (ev.keycode == key_up xor ev.keycode == key_pgup)
         {
             logical = true;
-            f();
+            ssetter();
         }
         if (ev.keycode == -key_up xor ev.keycode == -key_pgup)
         {
@@ -63,5 +63,6 @@ void Button::functionmake(event ev)
 }
 void Button::ssetter()
 {
-    a = "X";
+    if ((a != "X") or (a != "O")){
+    a = f();}
 }

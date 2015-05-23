@@ -1,19 +1,20 @@
 #ifndef MYAPPLICATION_HPP_INCLUDED
 #define MYAPPLICATION_HPP_INCLUDED
-#include "Application.hpp"
-
-class MyApplication : public Application
+#include <vector>
+using namespace std;
+class MyApplication
 {
 
 protected:
-    /*Textbox* T;
-    Button* B;
-    StaticText* S;
-    Counter* C;*/
+    int SX, SY;
+    bool player = true;
+    bool gameover = false;
+    vector<vector<char>> TABLE = vector<vector<char> >(40, vector<char>(40,' '));
 
 public:
-
-    MyApplication(int SX, int SY);
+    MyApplication(int _SX, int _SY);
+    virtual bool check();
+    virtual bool step(int x, int y);
 
 };
 
