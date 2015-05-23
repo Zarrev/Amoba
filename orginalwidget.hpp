@@ -37,6 +37,8 @@ public:
     virtual string sgetter(string a) {};
     virtual void ssetter() {};
     virtual void focus(event ev, int a);
+    bool isClicked(event ev);
+    void setText(string newText);
 
 };
 

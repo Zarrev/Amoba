@@ -5,7 +5,11 @@
 #include "Counter.hpp"
 #include "Select.hpp"
 #include "Button.hpp"
+#include "MyApplication.hpp"
 #include <iostream>
+#include <sstream>
+#include <string>
+
 
 using namespace genv;
 using namespace std;
@@ -29,22 +33,18 @@ void Application::run()
     }));
     */
     bool player = true;
-    vector<vector<Originalwidget*>> Widget = vector<vector<Originalwidget *> >(40, vector<Originalwidget*>(40,0));
+    MyApplication Engine(40,40);
+    Textbox Textb(SX*3/4,SY*3/4,80,50,"ok",1,0,100,255, true);
+    vector<vector<Originalwidget*>> Widget = vector<vector<Originalwidget *> >(10, vector<Originalwidget*>(10,0));
     int x = 1, y = 1, szamlalo = 1;
     for (unsigned int i = 0; i < Widget.size(); i++)
     {
         for (unsigned int j = 0; j < Widget.size(); j++)
         {
             /// Valszeg mutato fv kell lambda fv helyett, de majd csak hnap...
-            Widget[i][j] = new Button(14*(x),14*(y),12,12,5,600,600,1000,[&]()
+            Widget[i][j] = new Button(30*(x),30*(y),28,28,i,0,50,200,[&]()
             {
-                player = !player;
-                if(player)
-                    return 'X';
-                else
-                    return 'O';
-
-                //ssetter();
+                return ' ';
             });
             if (j == Widget.size()-1)
             {
@@ -54,6 +54,8 @@ void Application::run()
         }
         y = 1;
     }
+
+
     while(gin >> ev && ev.keycode != key_escape)
     {
         /*
@@ -70,11 +72,45 @@ void Application::run()
             for (unsigned int j = 0; j < Widget.size(); j++)
             {
                 Widget[i][j] -> focus(ev,i);
-                Widget[i][j] -> functionmake(ev);
+                //Widget[i][j] -> functionmake(ev);
                 Widget[i][j] -> draw();
+                if(Widget[i][j] -> isClicked(ev)) {
+                    Engine.step(i,j);
+                    stringstream ss;
+                    ss << Engine.cell(i,j);
+                    string tmp;
+                    ss >> tmp;
+                    Widget[i][j] -> setText(tmp);
+                }
+
             }
         }
         }
+
+        switch ( Engine.status() ) {
+
+          case 0 :
+            Textb.setText("Dontetlen");
+            break;
+
+          case -1 :
+            Textb.setText("X win");
+            break;
+
+          case -2 :
+            Textb.setText("O win");
+            break;
+
+        case 1 :
+            Textb.setText("X kore");
+            break;
+        case 2 :
+            Textb.setText("O kore");
+            break;
+
+        }
+        Textb.draw();
+
         gout << refresh;
 
 

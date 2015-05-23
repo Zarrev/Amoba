@@ -1,4 +1,6 @@
 #include "orginalwidget.hpp"
+#include <sstream>
+
 
 Originalwidget::Originalwidget(int _posx, int _posy, int _sizex, int _sizey, string _textmess, int _row, int _r, int _g, int _b)
  : posx(_posx), posy(_posy), sizex(_sizex), sizey(_sizey), textmess(_textmess), row(_row), r(_r), g(_g), b(_b) {}
@@ -20,4 +22,19 @@ void Originalwidget::focus(event ev, int a)
             focusban = false;
         }
     }
+}
+
+bool Originalwidget::isClicked(event ev) {
+    if (ev.button == btn_left)
+    {
+        if (posx+sizex >= ev.pos_x && posx <= ev.pos_x && posy <= ev.pos_y && posy+sizey >= ev.pos_y )
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void Originalwidget::setText(string newText) {
+    textmess = newText;
 }
