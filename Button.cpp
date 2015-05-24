@@ -57,6 +57,8 @@ void Button::functionmake(event ev)
 }
 void Button::ssetter()
 {
-
+    r = 255;
+    g = 0;
+    b = 0;
     textmess = f();
 }

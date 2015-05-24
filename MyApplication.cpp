@@ -48,8 +48,8 @@ bool MyApplication::check()
     {
         for (unsigned int j = 0; j < TABLE[i].size(); j++)
         {
-            //forcycle(counter5, ch5, TABLE[i][j]); ///oszlop
-            //forcycle(counter6, ch6, TABLE[j][i]); ///sor
+            forcycle(counter5, ch5, TABLE[i][j]); ///oszlop
+            forcycle(counter6, ch6, TABLE[j][i]); ///sor
             if (counter5 == 5 or counter6 == 5)
             {
                 gameover = true;

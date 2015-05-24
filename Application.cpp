@@ -23,22 +23,17 @@ void Application::run()
     event ev;
     gin.timer(50);
     bool player = true;
-    bool valtozo = false;
+
     MyApplication* Engine = new MyApplication(meret,meret);
-    Textbox Textb(SX*3/4,SY*3/4,120,50," ",1,0,100,255, true);
-    Textbox Textbo(SX*3/4,SY*2/4,100,50,"Restart - F5",1,0,100,255, true);
-    Button START(SX/2-200,SY/2-100,200,100,0,125,0,255,[&]()
-    {
-        valtozo = true;
-        return "START";
-    });
+    Textbox Textb(SX*3/4,SY*2/4,120,50," ",1,0,100,255, true);
+    Textbox Textbo(SX*3/4,SY*1/4,100,50,"Press F5 to restart",1,0,100,255, true);
     vector<vector<Originalwidget*>> Widget = vector<vector<Originalwidget *> >(meret, vector<Originalwidget*>(meret,0));
-    int x = 1, y = 1, szamlalo = 1;
+    int x = 1, y = 1, szamlalo = 30;
     for (unsigned int i = 0; i < Widget.size(); i++)
     {
         for (unsigned int j = 0; j < Widget.size(); j++)
         {
-            Widget[i][j] = new Button(12*(x),12*(y),10,10,i,0,50,200,[&]()
+            Widget[i][j] = new Button(12*(x),12*(y)+szamlalo,10,10,i,0,50,200,[&]()
             {
                 return " ";
             });
@@ -54,14 +49,6 @@ void Application::run()
 
     while(gin >> ev && ev.keycode != key_escape)
     {
-        if (!valtozo){
-            START.functionmake(ev);
-            START.focus(ev, x);
-        gout << color(0,0,0) << move_to(0,0) << box(SX,SY);
-            START.draw();
-        }
-        if (valtozo){
-
         if(ev.keycode == key_f5)
         {
             delete Engine;
@@ -103,30 +90,30 @@ void Application::run()
         switch ( Engine->status() ) {
 
           case 0 :
-            Textb.setText("Dontetlen");
+            Textb.setText("DRAW");
             break;
 
           case -1 :
             Textb.ssetter();
-            Textb.setText("X win");
+            Textb.setText("X WIN");
             break;
 
           case -2 :
             Textb.ssetter();
-            Textb.setText("O win");
+            Textb.setText("O WIN");
             break;
 
         case 1 :
-            Textb.setText("X kore");
+            Textb.setText("NEXT ONE IS X");
             break;
         case 2 :
-            Textb.setText("O kore");
+            Textb.setText("NEXT ONE IS O");
             break;
 
         }
         Textb.draw();
         Textbo.draw();
-        }
+
 
         gout << refresh;
 
