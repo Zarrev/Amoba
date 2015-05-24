@@ -10,6 +10,7 @@ public:
      virtual void functionmake(event ev);
      virtual string sgetter(string a);
      virtual void ssetter();
+     virtual void ssetter2();
 };
 
 #endif // TEXTBOX_HPP_INCLUDED

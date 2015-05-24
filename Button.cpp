@@ -1,7 +1,7 @@
 #include "Button.hpp"
 #include <iostream>
 
-Button::Button(int _posx, int _posy, int _sizex, int _sizey, int _row, int _r, int _g, int _b, function<char()> _f)
+Button::Button(int _posx, int _posy, int _sizex, int _sizey, int _row, int _r, int _g, int _b, function<string()> _f)
     : Originalwidget( _posx, _posy, _sizex, _sizey, _row, _r, _g, _b)
     {
         textmess = " ";
@@ -23,12 +23,6 @@ void Button::draw()
 
 void Button::functionmake(event ev)
 {
-    /*static int zero = 0;
-    if (zero == 0)
-    {
-        stringtext.push_back("");
-        zero++;
-    }*/
     if (focusban)
     {
         if (ev.button == btn_left)
@@ -63,5 +57,6 @@ void Button::functionmake(event ev)
 }
 void Button::ssetter()
 {
+
     textmess = f();
 }

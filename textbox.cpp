@@ -8,13 +8,20 @@
 
     void Textbox::draw()
     {
+        int margin = 10;
+        int margin1 = 5;
         if (!statictextbox)
         {
-            gout << move_to(posx,posy) << color(r,g,b) << box(sizex,sizey) << move_to(posx+5,posy+sizey/2+gout.cascent()/2) << color(255-r,255-g,255-b) << text(textmess);
+            gout << move_to(posx,posy) << color(r,g,b) << box(sizex,sizey) << move_to(posx+margin1,posy+sizey/2+gout.cascent()/2) << color(255-r,255-g,255-b) << text(textmess);
         }
         else
         {
-            gout << move_to(posx,posy) << color(r,g,b) << box(10+gout.twidth(textmess),sizey) << move_to(posx+5,posy+sizey/2+gout.cascent()/2) << color(255-r,255-g,255-b) << text(textmess);
+            if (sizex < margin+gout.twidth(textmess)){
+            gout << move_to(posx,posy) << color(r,g,b) << box(margin+gout.twidth(textmess),sizey) << move_to(posx+margin1,posy+sizey/2+gout.cascent()/2) << color(255-r,255-g,255-b) << text(textmess);}
+            else
+            {
+                gout << move_to(posx,posy) << color(r,g,b) << box(sizex,sizey) << move_to(posx+(sizex-gout.twidth(textmess))/2,posy+sizey/2+gout.cascent()/2) << color(255-r,255-g,255-b) << text(textmess);
+            }
         }
   }
 
@@ -58,9 +65,16 @@
 
     string Textbox::sgetter(string a)
     {
-
     }
     void Textbox::ssetter()
     {
-
+        r = 255;
+        g = 0;
+        b = 0;
+    }
+    void Textbox::ssetter2()
+    {
+        r = 0;
+        g = 100;
+        b = 255;
     }

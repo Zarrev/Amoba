@@ -38,6 +38,7 @@ public:
     virtual void ssetter() {};
     virtual void focus(event ev, int a);
     bool isClicked(event ev);
+    virtual void focustounfocus();
     void setText(string newText);
 
 };

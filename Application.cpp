@@ -18,34 +18,29 @@ Application::Application(int _SX, int _SY) : SX(_SX), SY(_SY) {}
 
 void Application::run()
 {
-    int meret = 20;
-    gout.open(SX,SY);
+    int meret = 40;
+    gout.open(SX,SY,true);
     event ev;
     gin.timer(50);
-    /*
-    vector<Originalwidget*> Widget;
-    Widget.push_back(new Textbox(20,20,100,25,"Ez egy StaticTextBox",1,255,0,0,true));
-    Widget.push_back(new Counter(20,50,100,25,"0",2,20,20,20,100,-5));
-    Widget.push_back(new Textbox(20,80,100,25,"--",3,150,150,150,false));
-    Widget.push_back(new Select(20,140,100,50,"--",4,0,0,0));
-    Widget.push_back(new Button(20,110,100,25,"+",5,600,600,1000,"+++",[&]()
-    {
-
-    }));
-    */
     bool player = true;
+    bool valtozo = false;
     MyApplication* Engine = new MyApplication(meret,meret);
-    Textbox Textb(SX*3/4,SY*3/4,80,50,"ok",1,0,100,255, true);
+    Textbox Textb(SX*3/4,SY*3/4,120,50," ",1,0,100,255, true);
+    Textbox Textbo(SX*3/4,SY*2/4,100,50,"Restart - F5",1,0,100,255, true);
+    Button START(SX/2-200,SY/2-100,200,100,0,125,0,255,[&]()
+    {
+        valtozo = true;
+        return "START";
+    });
     vector<vector<Originalwidget*>> Widget = vector<vector<Originalwidget *> >(meret, vector<Originalwidget*>(meret,0));
     int x = 1, y = 1, szamlalo = 1;
     for (unsigned int i = 0; i < Widget.size(); i++)
     {
         for (unsigned int j = 0; j < Widget.size(); j++)
         {
-            /// Valszeg mutato fv kell lambda fv helyett, de majd csak hnap...
             Widget[i][j] = new Button(12*(x),12*(y),10,10,i,0,50,200,[&]()
             {
-                return ' ';
+                return " ";
             });
             if (j == Widget.size()-1)
             {
@@ -59,14 +54,14 @@ void Application::run()
 
     while(gin >> ev && ev.keycode != key_escape)
     {
-        /*
-        for (unsigned int i = 0; i < Widget.size(); i++)
-        {
-        Widget[i] -> functionmake(ev);
-        Widget[i] -> focus(ev,i);
-        Widget[i] -> draw();
+        if (!valtozo){
+            START.functionmake(ev);
+            START.focus(ev, x);
+        gout << color(0,0,0) << move_to(0,0) << box(SX,SY);
+            START.draw();
         }
-        */
+        if (valtozo){
+
         if(ev.keycode == key_f5)
         {
             delete Engine;
@@ -78,10 +73,10 @@ void Application::run()
                 {
 
                         Widget[i][j] -> setText(" ");
+                        Widget[i][j] -> focustounfocus();
                 }
             }
-
-            cout << "#yolo";
+            Textb.ssetter2();
         }
 
         if (1 == 1){
@@ -90,7 +85,6 @@ void Application::run()
             for (unsigned int j = 0; j < Widget.size(); j++)
             {
                 Widget[i][j] -> focus(ev,i);
-                //Widget[i][j] -> functionmake(ev);
                 Widget[i][j] -> draw();
                 if(Widget[i][j] -> isClicked(ev)) {
                     Engine->step(i,j);
@@ -99,6 +93,7 @@ void Application::run()
                     string tmp;
                     ss >> tmp;
                     Widget[i][j] -> setText(tmp);
+                    ss.clear();
                 }
 
             }
@@ -112,10 +107,12 @@ void Application::run()
             break;
 
           case -1 :
+            Textb.ssetter();
             Textb.setText("X win");
             break;
 
           case -2 :
+            Textb.ssetter();
             Textb.setText("O win");
             break;
 
@@ -128,6 +125,8 @@ void Application::run()
 
         }
         Textb.draw();
+        Textbo.draw();
+        }
 
         gout << refresh;
 

@@ -56,8 +56,7 @@ Counter::Counter(int _posx, int _posy, int _sizex, int _sizey, string _textmess,
     }
 
     void Counter::draw()
-    {/// ezt jo lenne megnézni a szépség érdekében
-        //gout.load_font("LiberationSans-Regular.ttf", 16);
+    {
         int szorzox = 1;
         int szorzoy = 1;
         int marginx = 5;

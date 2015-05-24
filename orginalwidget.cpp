@@ -24,6 +24,12 @@ void Originalwidget::focus(event ev, int a)
     }
 }
 
+void Originalwidget::focustounfocus()
+{
+    gout << color(0,0,0) << move_to(posx-1,posy-1) << line(sizex+2,0) << line(0,sizey+2) << line(-(sizex+2),0) << line(0,-(sizey+2));
+    focusban = false;
+}
+
 bool Originalwidget::isClicked(event ev) {
     if (ev.button == btn_left)
     {
